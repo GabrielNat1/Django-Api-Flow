@@ -31,6 +31,8 @@ def get_by_nick(request, nick):
     
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def user_manager(request):
+    
+    # Method GET
     if request.method == 'GET':
         try:
             if request.GET['user']:
@@ -49,6 +51,7 @@ def user_manager(request):
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
+    # Method POST
     if request.method == 'POST':
         new_user = request.data
         
@@ -57,5 +60,20 @@ def user_manager(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    # Method PUT
+    if request.method == 'PUT':
+        nickname = request.data['user_nickname'] 
+        try:
+            updated_user = User.objects.get(pk=nickname)
+        except:
+            Response(status=status.HTTP_404_NOT_FOUND)
+            
+        serializer = UserSerializer(updated_user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         
         return Response(status=status.HTTP_400_BAD_REQUEST)
