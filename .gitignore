@@ -1,1 +1,7 @@
 venv/
+
+db.sqlite3
+gitignore
+
+__pycache__
+
