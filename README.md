@@ -1,5 +1,7 @@
 # **Django API Documentation - User CRUD** 📚
 
+![Image](https://github.com/user-attachments/assets/6e1a11b6-7092-4a2c-82c5-c629f9ad74f0)
+
 ## **Overview** 🔍
 This API allows managing users with CRUD operations (Create, Read, Update, Delete) to handle user data stored in the database. The user data includes a nickname (`user_nickname`), full name (`user_name`), email (`user_email`), and age (`user_age`). 👤
 
